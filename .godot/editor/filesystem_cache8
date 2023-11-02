@@ -1,9 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1698949777
+::res://::1698957479
 icon.svg::CompressedTexture2D::8783672393094492140::1698948809::1698948817::1::::<><>::
-::res://Characters/::1698949777
-character_body_2d.tscn::PackedScene::6764421933332297223::1698949777::0::1::::<><>::res://Characters/Player.gd<>uid://l8d77roa3k2o::::res://colors/blue.png
+::res://Characters/::1698957473
 Player.gd::GDScript::-1::1698949770::0::1::::<>CharacterBody2D<>::
+Player.tscn::PackedScene::6764421933332297223::1698957473::0::1::::<><>::res://Characters/Player.gd<>uid://l8d77roa3k2o::::res://colors/blue.png
 ::res://colors/::1698949463
 aqua.png::CompressedTexture2D::212897706504423874::1689437799::1698949463::1::::<><>::
 base.png::CompressedTexture2D::9221447488605953392::1689456287::1698949463::1::::<><>::
@@ -23,5 +23,5 @@ turret-sheet.png::CompressedTexture2D::727949451460473315::1689457536::169894946
 turret.png::CompressedTexture2D::7369878823619364704::1689456305::1698949463::1::::<><>::
 white.png::CompressedTexture2D::2568095699717225320::1689437716::1698949463::1::::<><>::
 yello.png::CompressedTexture2D::3491344029495186509::1689437840::1698949463::1::::<><>::
-::res://Levels/::1698948866
-template_level.tscn::PackedScene::998954039263573052::1698948866::0::1::::<><>::
+::res://Levels/::1698957473
+template_level.tscn::PackedScene::998954039263573052::1698957473::0::1::::<><>::uid://c3m0bnlnyg55d::::res://Characters/Player.tscn<>uid://qinfbbrthgii::::res://colors/green.png
