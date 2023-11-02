@@ -1,1 +1,4 @@
+res://Characters/character_body_2d.tscn
+res://Characters/character_body_2d.gd
+res://Characters/Player.tscn
 res://Levels/template_level.tscn
