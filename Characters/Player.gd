@@ -9,6 +9,8 @@ enum {SQUARE, RECT}
 var size = NORMAL
 var size_change_time = 0.65
 var form = SQUARE
+var is_rotating : bool = false
+var is_scaling : bool = false
 
 	
 func _physics_process(delta):
@@ -38,38 +40,55 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("change_form"):
 		change_rectangle_square()
 	if Input.is_action_just_pressed("rotate_right"):
-		var tween = get_tree().create_tween()
-		tween.tween_property(self, "rotation_degrees", self.rotation_degrees + 90, size_change_time)
+		rotate_(90)
 	if Input.is_action_just_pressed("rotate_left"):
-		var tween = get_tree().create_tween()
-		tween.tween_property(self, "rotation_degrees", self.rotation_degrees - 90, size_change_time)
+		rotate_(-90)
 	
 	move_and_slide()
-	
+
+func rotate_(degs):
+	if is_rotating == false:
+		is_rotating = true
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "rotation_degrees", self.rotation_degrees + degs, size_change_time)
+		tween.tween_property(self, "is_rotating", false, 0.001)
+
 func change_rectangle_square():
-	if form == SQUARE:
-		form = RECT
-		var tween = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
-		tween.tween_property(self, "scale", Vector2(scale.x*3,scale.y), size_change_time)
-	elif form == RECT:
-		form = SQUARE
-		var tween = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
-		tween.tween_property(self, "scale", Vector2(scale.x/3,scale.y), size_change_time)
+	if is_scaling == false:
+		is_scaling = true
+		if form == SQUARE:
+			form = RECT
+			var tween = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
+			tween.tween_property(self, "scale", Vector2(scale.x*3,scale.y), size_change_time)
+			tween.tween_property(self, "is_scaling", false, 0.001)
+		elif form == RECT:
+			form = SQUARE
+			var tween = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
+			tween.tween_property(self, "scale", Vector2(scale.x/3,scale.y), size_change_time)
+			tween.tween_property(self, "is_scaling", false, 0.001)
 		
 func make_bigger():
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
-	if size == NORMAL:
-		size = BIG
-		tween.tween_property(self, "scale", Vector2(scale.x*3,scale.y*3), size_change_time)
-	elif size == SMALL:
-		size = NORMAL
-		tween.tween_property(self, "scale", Vector2(scale.x*3,scale.y*3), size_change_time)
+	if is_scaling == false:
+		is_scaling = true
+		var tween = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
+		if size == NORMAL:
+			size = BIG
+			tween.tween_property(self, "scale", Vector2(scale.x*3,scale.y*3), size_change_time)
+			tween.tween_property(self, "is_scaling", false, 0.001)
+		elif size == SMALL:
+			size = NORMAL
+			tween.tween_property(self, "scale", Vector2(scale.x*3,scale.y*3), size_change_time)
+			tween.tween_property(self, "is_scaling", false, 0.001)
 
 func make_smaller():
-	var tween = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
-	if size == BIG:
-		size = NORMAL
-		tween.tween_property(self, "scale", Vector2(scale.x/3,scale.y/3), size_change_time)
-	elif size == NORMAL:
-		size = SMALL
-		tween.tween_property(self, "scale", Vector2(scale.x/3,scale.y/3), size_change_time)
+	if is_scaling == false:
+		is_scaling = true
+		var tween = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE)
+		if size == BIG:
+			size = NORMAL
+			tween.tween_property(self, "scale", Vector2(scale.x/3,scale.y/3), size_change_time)
+			tween.tween_property(self, "is_scaling", false, 0.001)
+		elif size == NORMAL:
+			size = SMALL
+			tween.tween_property(self, "scale", Vector2(scale.x/3,scale.y/3), size_change_time)
+			tween.tween_property(self, "is_scaling", false, 0.001)
